@@ -1,7 +1,11 @@
-// This file contains type definitions for your data.
-// It describes the shape of the data, and what data type each property should accept.
-// For simplicity of teaching, we're manually defining these types.
-// However, these types are generated automatically if you're using an ORM such as Prisma.
+// Este arquivo contém definições de tipo para seus dados.
+// Descreve o formato dos dados e qual tipo de dados cada propriedade deve aceitar.
+// Para simplificar o ensino, estamos definindo esses tipos manualmente.
+
+import { ForwardRefExoticComponent, RefAttributes, SVGProps } from "react";
+import { UrlObject } from "url";
+
+// No entanto, esses tipos são gerados automaticamente se você estiver usando um ORM como o Prisma.
 export type User = {
   id: string;
   name: string;
@@ -21,9 +25,9 @@ export type Invoice = {
   customer_id: string;
   amount: number;
   date: string;
-  // In TypeScript, this is called a string union type.
-  // It means that the "status" property can only be one of the two strings: 'pending' or 'paid'.
-  status: 'pending' | 'paid';
+  // No TypeScript, isso é chamado de tipo de união de string.
+  // Significa que a propriedade "status" só pode ser uma das duas strings: 'pendente' ou 'pago'.
+  status: "pending" | "paid";
 };
 
 export type Revenue = {
@@ -39,8 +43,9 @@ export type LatestInvoice = {
   amount: string;
 };
 
-// The database returns a number for amount, but we later format it to a string with the formatCurrency function
-export type LatestInvoiceRaw = Omit<LatestInvoice, 'amount'> & {
+// O banco de dados retorna um número para o valor, mas posteriormente o formatamos
+// em uma string com a função formatCurrency
+export type LatestInvoiceRaw = Omit<LatestInvoice, "amount"> & {
   amount: number;
 };
 
@@ -52,7 +57,7 @@ export type InvoicesTable = {
   image_url: string;
   date: string;
   amount: number;
-  status: 'pending' | 'paid';
+  status: "pending" | "paid";
 };
 
 export type CustomersTable = {
@@ -84,5 +89,18 @@ export type InvoiceForm = {
   id: string;
   customer_id: string;
   amount: number;
-  status: 'pending' | 'paid';
+  status: "pending" | "paid";
 };
+
+export type Links = {
+  name: string;
+  href: UrlObject | any;
+  icon: ForwardRefExoticComponent<
+    Omit<SVGProps<SVGSVGElement>, "ref"> & {
+      title?: string | undefined;
+      titleId?: string | undefined;
+    } & RefAttributes<SVGSVGElement>
+  >;
+}[];
+
+/* UrlObject | RouteImpl<string> */
